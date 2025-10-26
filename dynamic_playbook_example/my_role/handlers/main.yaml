@@ -1,0 +1,20 @@
+--- 
+- name: Restart Web Server
+  service:
+    name: apache2
+    state: restarted
+
+- name: Start Web Server
+  service:
+    name: apache2
+    state: started
+
+- name: Start Ngnix
+  service:
+    name: ngnix
+    state: started
+
+- name: Restart Nginx
+  service:
+    name: ngnix
+    state: restarted

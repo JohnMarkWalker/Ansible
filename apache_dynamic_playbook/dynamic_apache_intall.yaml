@@ -1,0 +1,7 @@
+---
+- name: Install Apache on All Webservers
+  hosts: webservers
+  become: yes
+
+  roles: 
+    - apache_role

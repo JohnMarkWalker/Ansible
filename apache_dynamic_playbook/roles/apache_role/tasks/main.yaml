@@ -1,0 +1,20 @@
+---
+  - name: Install Apache
+    package: 
+      name: "{{ apache_package }}"
+      state: present
+
+  - name: Start/Enable Apache Service
+    service:
+      name: "{{ apache_service }}"
+      state: started
+      enabled: true
+
+  - name: Copy Apache Document Root File
+    copy:
+      src: files/index.html
+      dest: "{{ document_root }}"
+      owner: root
+      group: root
+      mode: '0644'
+    notify: Restart Apache

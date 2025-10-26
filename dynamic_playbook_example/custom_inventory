@@ -1,0 +1,5 @@
+[webservers]
+18.216.228.144 #al2
+
+[appservers]
+18.117.240.221 #ubuntu

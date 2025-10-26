@@ -1,0 +1,24 @@
+---
+- name: Install Apache Webserver
+  hosts: webservers_al2
+  become: yes
+
+  tasks:
+    - name: Install Apache "HTTPD"
+      yum: 
+        name: httpd
+        state: present
+
+    - name: Start/Enable Apache Service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Copy Apache Document Root File
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'

@@ -1,0 +1,67 @@
+---
+    - name: add zip
+      yum:
+        name: zip
+        state: present
+
+    - name: copy files
+      copy:
+        src: ~/test-file
+        dest: /tmp/test-file-copy
+        owner: ec2-user
+        groups: ec2-user
+        mode: '0640'
+      notify: Restart Web Server
+
+    - name: shell commands
+      shell: 
+        cmd: "export cars=bmw"
+
+    - name: create link
+      file:
+        path: /tmp/newfile
+        state: touch
+
+    - name: create dir
+      file:
+        path: /tmp/newdir
+        state: directory
+    
+    - name: create ansible user
+      user:
+        name: ansibleadmin
+        comment: ansible admin tests user
+        groups: wheel
+        append: yes
+    
+    - name: add a line in file with file creation
+      lineinfile:
+        path: /tmp/file10
+        line: this is a new line I added through ansible
+        create: yes
+      notify: Start Web Server
+
+    - name: Install Packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+       - httpd
+       - nginx
+       - git
+
+    - name: Start Packages
+      yum:
+        name: "{{ item }}"
+        state: started
+      loop:
+       - httpd
+       - nginx
+       - git
+    
+    - name: Start Packages
+      yum:
+        name: "{{ item }}"
+        state: started
+      loop: "{{packages}}"
+       

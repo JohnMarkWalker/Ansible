@@ -1,0 +1,24 @@
+---
+- name: Install Apache Ubuntu Webserver
+  hosts: webservers_ubuntu
+  become: yes
+
+  tasks:
+    - name: Install Apache "Apache2"
+      apt: 
+        name: apache2
+        state: present
+
+    - name: Start/Enable Apache Service
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Copy Apache Document Root File
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: '0644'
