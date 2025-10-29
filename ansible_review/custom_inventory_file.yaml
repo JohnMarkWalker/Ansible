@@ -1,0 +1,5 @@
+[ubuntu_webservers]
+18.118.104.97 ansible_user=ubuntu #ubuntu
+
+[al2_webservers]
+18.220.163.19 #al2

@@ -1,0 +1,7 @@
+---
+- name: install apache
+  hosts: al2_webservers
+  become: yes
+
+  roles:
+    - apache_al2
