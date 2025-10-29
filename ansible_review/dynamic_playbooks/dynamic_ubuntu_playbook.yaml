@@ -1,0 +1,7 @@
+---
+- name: install apache
+  hosts: ubuntu_webservers
+  become: yes
+
+  roles:
+    - apache_ubuntu

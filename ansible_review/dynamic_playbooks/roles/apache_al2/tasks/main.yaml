@@ -1,0 +1,6 @@
+---
+- name: install apache
+  yum: 
+    name: "{{ apache_package }}"
+    state: present
+  notify: start apache service
