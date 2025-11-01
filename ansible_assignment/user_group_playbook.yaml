@@ -1,0 +1,15 @@
+---
+- name: create user and group
+  hosts: 18.222.122.191
+  become: yes
+
+  tasks:
+  - name: create group
+    group:
+      name: admins
+      state: present
+
+  - name: create user
+    user: 
+      name: ansible_user
+      group: admins

@@ -1,0 +1,21 @@
+---
+- name: set up http web server
+  hosts: webservers
+  become: yes
+
+  tasks:
+  - name: install httpd
+    yum:
+      name: httpd
+      state: present
+  
+  - name: start/enable http
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+
+  - name: document root file
+    copy:
+      dest: /var/www/html/index.html
+      content: Hello, this site belongs to $HOSTNAME

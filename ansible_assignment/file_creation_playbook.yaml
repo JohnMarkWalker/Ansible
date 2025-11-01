@@ -1,0 +1,11 @@
+---
+- name: create file with content
+  hosts: 18.222.122.191
+
+  tasks:
+    - name: create file
+      copy: 
+        dest: /tmp/playbook_file
+        content: hello world, this is a playbook file
+        mode: 0700
+
